@@ -1,28 +1,70 @@
 import configs from '../configs'
+import Bird from './Bird'
+import Bar from './Bar'
+import Point from './Point'
 
 export default function sketch(s) {
-  let x, y, backgroundColor;
+  let x, y, backgroundColor = 0;
 
-  const width = configs.canvas.size.width;
-  const height = configs.canvas.size.height;
+  var bird = new Bird(s);
+  var bars = []
+  var points = []
+
+  const {
+    width,
+    height
+  } = configs.canvas.size;
 
   s.setup = () => {
     s.createCanvas(width, height);
-    backgroundColor = s.color(s.random(255), s.random(255), s.random(255));
 
-    x = s.random(width);
-    y = height / 2;
+    bars.push(new Bar(s))
   };
 
   s.draw = () => {
     s.background(backgroundColor);
-    s.fill(s.color(255, 0, 0));
-    s.ellipse(x, y, 100, 100);
 
-    x = (x + 1) % width;
+    for (var index = bars.length - 1; index >= 0; index--) {
+      var bar = bars[index];
+      bar.show()
+      bar.update()
+
+      if (bar.hits(bird)) {
+        console.log("HIT")
+      }
+
+      if (bar.offscreen()) {
+        bars.splice(index, 1)
+      }
+    }
+
+    if (points.length >= 20) {
+      points.splice(0, 1)
+    }
+    points.push(new Point(bird.x, bird.y, s))
+
+    points.map(p => {
+      p.show()
+      p.update()
+    })
+
+    bird.update()
+    bird.show()
+
+    if (s.frameCount % 80 === 0) {
+      bars.push(new Bar(s))
+      bars.length > 10 ? bars.shift() : 0
+    }
   };
 
   s.mousePressed = () => {
-    backgroundColor = s.color(s.random(255), s.random(255), s.random(255));
+
   };
+
+  s.keyPressed = () => {
+    if (s.key == ' ') {
+      console.log('SPACE')
+      bird.up()
+    }
+  }
 }
