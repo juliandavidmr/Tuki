@@ -1,0 +1,51 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js
+
+PATH: 
+  C:\Users\jul.mora\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\jul.mora\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\nodejs;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\Program Files\dotnet;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Program Files\MySQL\MySQL Utilities 1.6;C:\Program Files\Microsoft\Web Platform Installer;C:\Users\jul.mora\AppData\Local\Yarn\bin;C:\Users\jul.mora\AppData\Local\.meteor;C:\Users\jul.mora\AppData\Local\GitHubDesktop\bin;C:\Program Files (x86)\Nmap;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  0.27.5
+
+Node version: 
+  6.11.1
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "p5distancia",
+    "version": "0.0.1",
+    "main": "src/index.js",
+    "scripts": {
+      "start": "webpack-dev-server",
+      "build": "webpack -p",
+      "clean": "rmdir -r dist"
+    },
+    "dependencies": {
+      "p5": "^0.5.9"
+    },
+    "devDependencies": {
+      "webpack": "^2.5.1",
+      "babel-core": "^6.24.1",
+      "babel-loader": "^7.0.0",
+      "babel-preset-es2015": "^6.24.1",
+      "babel-preset-stage-0": "^6.24.1",
+      "copy-webpack-plugin": "^4.0.1",
+      "html-webpack-plugin": "^2.28.0",
+      "webpack-dev-server": "^2.4.5"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: connect ETIMEDOUT 151.101.56.162:80
+      at Object.exports._errnoException (util.js:1018:11)
+      at exports._exceptionWithHostPort (util.js:1041:20)
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1086:14)
