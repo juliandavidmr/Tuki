@@ -9,6 +9,8 @@ export default function sketch(s) {
   var bird = new Bird(s);
   var bars = []
   var points = []
+  var countSpaces = 0
+  var periodBars = 80
 
   const {
     width,
@@ -17,13 +19,12 @@ export default function sketch(s) {
 
   s.setup = () => {
     s.createCanvas(width, height);
-
-    bars.push(new Bar(s))
   };
 
   s.draw = () => {
     s.background(backgroundColor);
 
+    // Bars
     for (var index = bars.length - 1; index >= 0; index--) {
       var bar = bars[index];
       bar.show()
@@ -38,8 +39,9 @@ export default function sketch(s) {
       }
     }
 
+    // points bird 
     if (points.length >= 20) {
-      points.splice(0, 1)
+      points.splice(0, Math.random() * 4 )
     }
     points.push(new Point(bird.x, bird.y, s))
 
@@ -51,10 +53,15 @@ export default function sketch(s) {
     bird.update()
     bird.show()
 
-    if (s.frameCount % 80 === 0) {
+    if (s.frameCount % periodBars === 0) {
       bars.push(new Bar(s))
-      bars.length > 10 ? bars.shift() : 0
+      bars.length > 30 ? bars.shift() : 0
+      upPeriodBar()
     }
+  
+    // text
+    s.textSize(20);
+    s.text("Espacios " + countSpaces, 10, 30);
   };
 
   s.mousePressed = () => {
@@ -65,6 +72,11 @@ export default function sketch(s) {
     if (s.key == ' ') {
       console.log('SPACE')
       bird.up()
+      countSpaces++;
     }
+  }
+
+  function upPeriodBar() {
+    s.frameCount !== 40? periodBars-- : 0;
   }
 }

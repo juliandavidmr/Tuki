@@ -16,7 +16,7 @@ export default class Bird {
   }
 
   show() {
-    this.s.fill(255)
+     this.s.fill(255)
     this.s.ellipse(this.x, this.y, 32, 32)
   }
 
